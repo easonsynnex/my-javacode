@@ -9,7 +9,7 @@ import javax.jms.*;
  * Created by easony on 07/06/18.
  */
 public class QueueProvider {
-    private final static String queueName = "activemq-queue";
+    private final static String queueName = "my-activemq-queue";
 
     @Test
     public void queueProvider() {
