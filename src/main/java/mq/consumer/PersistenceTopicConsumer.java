@@ -7,7 +7,7 @@ import javax.jms.*;
 
 public class PersistenceTopicConsumer {
     private final static String queueName = "my-activemq-topic";
-    private final static String clientId = "eason0001";
+    private final static String clientId = "eason-0001";
 
     @Test
     public void persistenceTopicConsumer() {
@@ -19,7 +19,7 @@ public class PersistenceTopicConsumer {
             connection.setClientID(clientId);
             connection.start();
 
-            Session session = connection.createSession(Boolean.TRUE, Session.AUTO_ACKNOWLEDGE);
+            Session session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);
             Topic destination = session.createTopic(queueName);
             //持久化订阅,接收离线消息
             MessageConsumer consumer = session.createDurableSubscriber(destination, clientId);

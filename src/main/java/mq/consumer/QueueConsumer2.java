@@ -4,16 +4,15 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.testng.annotations.Test;
 
 import javax.jms.*;
-import java.io.IOException;
 
 /**
  * Created by easony on 07/06/18.
  */
-public class QueueConsumer {
+public class QueueConsumer2 {
     private final static String queueName = "my-activemq-queue";
 
     @Test
-    public void queueConsumer() {
+    public void queueConsumer2() {
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
         Connection connection = null;
         try {
@@ -29,10 +28,9 @@ public class QueueConsumer {
             Destination destination = session.createQueue(queueName);
 
             MessageConsumer consumer = session.createConsumer(destination);
-            for (int i = 0;i < 10;i++) {
+            for (int i = 0;i < 10 ; i++) {
                 TextMessage message = (TextMessage) consumer.receive();
-                //message.acknowledge();
-                System.out.println("Receive message1 ---->  " + message.getText());
+                System.out.println("Receive message2 ---->  " + message.getText());
             }
 
  /*           MessageListener messageListener=new MessageListener() {

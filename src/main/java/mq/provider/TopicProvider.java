@@ -19,18 +19,18 @@ public class TopicProvider {
         try {
             connection = connectionFactory.createConnection();
             connection.start();
-            Session session = connection.createSession(Boolean.TRUE, Session.AUTO_ACKNOWLEDGE);
+            Session session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);
             Destination destination = session.createTopic(queueName);
 
             MessageProducer producer = session.createProducer(destination);
             //消息持久化
             producer.setDeliveryMode(DeliveryMode.PERSISTENT);
 
-            TextMessage message = session.createTextMessage("Hello world");
+            TextMessage message = session.createTextMessage("Hello, this is topic");
             producer.send(message);
 
-            session.commit();
-            session.close();
+            /*session.commit();
+            session.close();*/
         } catch (JMSException e) {
             e.printStackTrace();
         }finally {

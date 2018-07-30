@@ -22,15 +22,19 @@ public class QueueProvider {
             CLIENT_ACKNOWLEDGE 客户端确认
             AUTO_ACKNOWLEDGE  自动确认，客户端接收消息无需做额外工作
             DUPS_OK_ACKNOWLEDGE消息延迟确认。 指定消息提供者在消息接收者没有确认发
-送时重新发送消息， 这种模式不在乎接受者收到重复的消
-息。
+                                送时重新发送消息， 这种模式不在乎接受者收到重复的消息。
              */
             Session session = connection.createSession(Boolean.FALSE, Session.CLIENT_ACKNOWLEDGE);
+            //创建目的地
             Destination destination = session.createQueue(queueName);
-
+            //创建发送者
             MessageProducer producer = session.createProducer(destination);
-            TextMessage message = session.createTextMessage("Hello world");
-            producer.send(message);
+            for (int i = 0;i < 10;i++){
+                TextMessage message = session.createTextMessage("Hello world" + i);
+                producer.send(message);
+            }
+
+            //session.commit();
             session.close();
         } catch (JMSException e) {
             e.printStackTrace();
