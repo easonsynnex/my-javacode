@@ -1,6 +1,7 @@
 package mq.provider;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.activemq.broker.BrokerService;
 import org.testng.annotations.Test;
 
 import javax.jms.*;
@@ -10,6 +11,13 @@ import javax.jms.*;
  */
 public class QueueProvider {
     private final static String queueName = "my-activemq-queue";
+
+    public static void main(String[] args) throws Exception {
+        BrokerService broker = new BrokerService();
+        broker.addConnector("tcp://localhost:61616");
+        broker.start();
+        System.out.println("ActiveMQ 已启动!");
+    }
 
     @Test
     public void queueProvider() {
