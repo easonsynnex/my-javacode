@@ -14,6 +14,8 @@ import java.util.Set;
 public class Testweiyunsuan {
     public static void main(String[] args) {
         System.out.println(3029737 & 15);
+        String a = "abcdefg";
+        System.out.println(a.substring(0,2));
     }
 
     @Test

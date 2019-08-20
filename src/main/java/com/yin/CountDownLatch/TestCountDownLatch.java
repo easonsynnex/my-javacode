@@ -18,11 +18,10 @@ public class TestCountDownLatch {
                     public void run(){
                         System.out.println(Thread.currentThread().getName() + " 开始...");
                         try {
-                            count.countDown();//计数器减1
 
-                            count.await();//调用await()方法的线程会被挂起，指导锁存计数器为0
                             Thread.sleep(1000);//doSomeThing()
                             System.out.println(Thread.currentThread().getName() + " 结束.");
+                            count.countDown();//计数器减1
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -30,7 +29,6 @@ public class TestCountDownLatch {
                 }.start();
             }
 
-            Thread.sleep(2000);
             count.await();
             System.out.println("所有线程结束");
         }
